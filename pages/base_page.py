@@ -6,14 +6,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from .locators import BasePageLocators
 import math
-import time
 
 
 class BasePage:
-    def __init__(self, browser: RemoteWebDriver, url, timeout=5):
+    def __init__(self, browser: RemoteWebDriver, url, timeout=6):
         self.browser = browser
         self.url = url
-        #self.browser.implicitly_wait(timeout)
+        self.browser.implicitly_wait(timeout)
 
     def go_to_login_page(self):
         self.browser.find_element(*BasePageLocators.LOGIN_LINK).click()
@@ -59,7 +58,6 @@ class BasePage:
         answer = str(math.log(abs((12 * math.sin(float(x))))))
         alert.send_keys(answer)
         alert.accept()
-        #time.sleep(30)
         try:
             alert = self.browser.switch_to.alert
             alert_text = alert.text
