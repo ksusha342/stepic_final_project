@@ -51,7 +51,8 @@ class ProductPage(BasePage):
     def should_disappear_of_success_message(self):
         button = self.browser.find_element(*ProductPageLocators.BASKET_BUTTON)
         button.click()
-        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), 'Success message is not disappeared, but should be'
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), 'Success message is not disappeared, but ' \
+                                                                          'should be '
 
     def should_not_be_success_message(self):
         assert self.is_not_element_present(
